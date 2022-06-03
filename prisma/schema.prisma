@@ -14,3 +14,20 @@ model Form {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model DropdownList {
+  id        Int            @id @default(autoincrement())
+  name      String
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  items     DropdownItem[]
+}
+
+model DropdownItem {
+  id        Int          @id @default(autoincrement())
+  name      String
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  listId    Int
+  list      DropdownList @relation(fields: [listId], references: [id])
+}
